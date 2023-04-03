@@ -3,7 +3,11 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  googleDriveAPI: {
+    clientId: "1072647161509-omifqi8tbmkcveeau8fcvusc7ltf5dfm.apps.googleusercontent.com",
+    apiKey: "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"
+  }
 };
 
 /*

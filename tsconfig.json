@@ -2,6 +2,7 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
@@ -21,6 +22,10 @@
     "lib": [
       "es2020",
       "dom"
+    ],
+    "typeRoots": [
+      "src/typings",
+      "node_modules/@types"
     ]
   },
   "angularCompilerOptions": {

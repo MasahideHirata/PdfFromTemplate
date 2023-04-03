@@ -1,14 +1,22 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { AgGridModule } from 'ag-grid-angular';
 
 import { AppComponent } from './app.component';
+import { HttpClientModule } from '@angular/common/http';
+import { CreatePdfComponent } from './create-pdf/create-pdf.component';
+import { CanvasFabricComponent } from './canvas-fabric/canvas-fabric.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    CreatePdfComponent,
+    CanvasFabricComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    HttpClientModule,
+    AgGridModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

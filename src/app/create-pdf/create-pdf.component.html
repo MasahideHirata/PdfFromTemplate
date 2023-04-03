@@ -1,0 +1,25 @@
+<p>Click the button to create a new PDF document with <code>pdf-lib</code></p>
+<button (click)="createPdf()">Create PDF</button>
+
+<hr>
+<!-- <app-canvas-fabric #CanvasFabricComponent></app-canvas-fabric> -->
+
+<div>
+    <ag-grid-angular
+        class="ag-theme-alpine"
+        style="height: 300px;"
+        [rowData]="rowData"
+        [columnDefs]="columnDefs"
+        [gridOptions]="gridOptions"
+        (gridReady)="onGridReady($event)"
+    ></ag-grid-angular>
+</div>
+<div>
+    <button (click)="onAddRow()">Add Row</button>
+    <button (click)="onDeleteRow()">Delete Row</button>
+    <button (click)="onUploadExcel()">Upload Excel</button>
+</div>
+
+<hr>
+
+create searchable list here for other PDF documents, and connect to dropbox/google sheets/firebase.
