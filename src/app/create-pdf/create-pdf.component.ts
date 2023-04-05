@@ -30,6 +30,35 @@ export class CreatePdfComponent implements OnInit {
 
   @ViewChild('CanvasFabricComponent', {static: true}) CanvasFabricComponent?: CanvasFabricComponent;
 
+  /* ====================================================================================================
+  Form Inputs
+  ==================================================================================================== */
+  formInputs = [
+    {id: "EstimationName", name: "見積名称", value: ""},
+    {id: "HandoverLocation", name: "受渡場合", value: ""},
+    {id: "PaymentConditions", name: "支払い条件", value: ""},
+    {id: "HandoverDeadline", name: "受渡期限", value: ""},
+    {id: "EstimationValidDate", name: "見積有効期限", value: ""},
+  ]
+
+  files: string[] = [
+    'ファイル名１',
+    'ファイル名２',
+    'ファイル名３',
+  ]
+  selected?: string;
+
+  // - 名称
+  // - 受渡場合
+  // - 支払い条件
+  // - 受渡期限
+  // - 見積有効期限
+  
+
+  /* ====================================================================================================
+  PDF
+  ==================================================================================================== */
+
   pdfDoc: any;
   drawTextSettings: any = {
     size: 12,
@@ -38,6 +67,13 @@ export class CreatePdfComponent implements OnInit {
 
   width: any;
   height: any;
+
+
+
+
+  /* ====================================================================================================
+  AG Grid
+  ==================================================================================================== */
 
   rowData = [
     { No: 1, Item: 'No. 1 ベルトC/V', Amount: 1, Unit: '式', Price: '1,042,000', Total: '1,042,000' },
@@ -250,11 +286,28 @@ export class CreatePdfComponent implements OnInit {
 
   onDeleteRow() {
     const selectedNodes = this.gridApi.getSelectedNodes();
+    console.log('selectedNodes', selectedNodes);
     this.gridApi.applyTransaction({ remove: selectedNodes });
   }
 
-  onUploadExcel() {
+  getAllRows() {
+    let rowData: any = [];
+    this.gridApi.forEachNode((node: any) => rowData.push(node.data));
+    return rowData;
+  }
 
+  onUploadExcel() {
+    const dataObject: any = {};
+
+    this.formInputs.forEach((item: any) => dataObject[item.name] = item.value);
+
+    const rowData = this.getAllRows();
+    const estimationDetails = JSON.stringify(rowData);
+    dataObject['estimationDetails'] = estimationDetails;
+    console.warn("save this data", dataObject);
+
+    // add api to save data to Google Sheets;
+  
   }
 
 

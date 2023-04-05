@@ -35,8 +35,9 @@ export class AppComponent {
 
   async ngOnInit() { }
 
-  onClickSignIn() {
-    this.appService.signIn();
+  async onClickSignIn() {
+    await this.appService.signIn();
+    console.log("How to make it Wait for sign in finished..?")
   }
 
   onClickInitSheet() {

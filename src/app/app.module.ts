@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CreatePdfComponent } from './create-pdf/create-pdf.component';
 import { CanvasFabricComponent } from './canvas-fabric/canvas-fabric.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { CanvasFabricComponent } from './canvas-fabric/canvas-fabric.component';
     BrowserModule,
     HttpClientModule,
     AgGridModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

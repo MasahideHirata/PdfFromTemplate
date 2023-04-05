@@ -1,25 +1,98 @@
-<p>Click the button to create a new PDF document with <code>pdf-lib</code></p>
-<button (click)="createPdf()">Create PDF</button>
+<div class="container-fluid m-3">
+    <div class="row mb-5">
+        <div class="col">
+            <div class="container-fluid px-0">
+                <div class="row bg-light">
+                    <p class="h3 fw-bold">ファイル (新作成・管理)</p>
+                    <hr class="mb-0">
+                </div>
 
-<hr>
-<!-- <app-canvas-fabric #CanvasFabricComponent></app-canvas-fabric> -->
+                <div class="row mt-3">
+                    <div class="col-auto">
+                        <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+                            <option selected>新ファイル作成</option>
+                            <option value="1">ファイル名１</option>
+                            <option value="2">ファイル名２</option>
+                            <option value="3">ファイル名３</option>
+                        </select>  
+                    </div>
+                    <div class="col">
+                        <div class="input-group input-group-sm row">
+                            <span class="col-auto input-group-text" id="search">探す</span>
+                            <input type="text" class="form-control" aria-describedby="search">
+                        </div>
+                    </div>
+                </div>
 
-<div>
-    <ag-grid-angular
-        class="ag-theme-alpine"
-        style="height: 300px;"
-        [rowData]="rowData"
-        [columnDefs]="columnDefs"
-        [gridOptions]="gridOptions"
-        (gridReady)="onGridReady($event)"
-    ></ag-grid-angular>
+
+            </div>
+        </div>
+
+
+    </div>
+
+    <!-- Form Inputs -->
+    <div class="row mb-5">
+        <div class="col">
+            <div class="container-fluid px-0">
+                <div class="row bg-light">
+                    <p class="h3 fw-bold">入力</p>
+                    <hr class="mb-0">
+                </div>
+                <div class="row">
+                    <div *ngFor="let formInput of formInputs" class="col-6 mt-3 px-0">
+                        <div class="container-fluid">
+                            <div class="input-group row">
+                                <span class="col-3 input-group-text" [id]="formInput.id">{{formInput.name}}</span>
+                                <input type="text" class="form-control" [attr.aria-describedby]="formInput.id" [(ngModel)]="formInput.value">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Table -->
+    <div class="row mb-4">
+        <div class="col">
+            <div class="container-fluid px-0">
+                <div class="row bg-light">
+                    <p class="h3 fw-bold">見積名称</p>
+                    <hr class="mb-0">
+                </div>
+                <div class="row mt-3">
+                    <div class="col-auto">
+                        <button class="btn btn-outline-dark btn-sm" (click)="onAddRow()">＋</button>
+                    </div>
+                    <div class="col-auto">
+                        <button class="btn btn-outline-dark btn-sm" (click)="onDeleteRow()">ー</button>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col px-0">
+                        <ag-grid-angular
+                            class="ag-theme-alpine"
+                            style="height: 300px; width: 100%"
+                            [rowData]="rowData"
+                            [columnDefs]="columnDefs"
+                            [gridOptions]="gridOptions"
+                            (gridReady)="onGridReady($event)"
+                        ></ag-grid-angular>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-auto px-0">
+            <button class="btn btn-outline-danger btn-lg me-3" (click)="createPdf()">PDF作成</button>
+        </div>
+        <div class="col-auto px-0">
+            <button class="btn btn-outline-success btn-lg" (click)="onUploadExcel()">Google Sheetsに保存</button>
+        </div>
+    </div>
 </div>
-<div>
-    <button (click)="onAddRow()">Add Row</button>
-    <button (click)="onDeleteRow()">Delete Row</button>
-    <button (click)="onUploadExcel()">Upload Excel</button>
-</div>
 
-<hr>
 
-create searchable list here for other PDF documents, and connect to dropbox/google sheets/firebase.
